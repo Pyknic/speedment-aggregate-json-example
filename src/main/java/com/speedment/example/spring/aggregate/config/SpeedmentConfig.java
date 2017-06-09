@@ -29,8 +29,9 @@ public class SpeedmentConfig {
     @Bean(destroyMethod = "stop")
     EmployeesApplication getApplication() {
         return new EmployeesApplicationBuilder()
-            .withUsername(env.getProperty("speedment.username"))
-            .withPassword(env.getProperty("speedment.password"))
+            .withConnectionUrl(env.getProperty("spring.datasource.url"))
+            .withUsername(env.getProperty("spring.datasource.username"))
+            .withPassword(env.getProperty("spring.datasource.password"))
             .withBundle(DataStoreBundle.class)
             .withBundle(JsonBundle.class)
             .build();
@@ -51,3 +52,4 @@ public class SpeedmentConfig {
         return app.getOrThrow(SalaryManager.class);
     }
 }
+
